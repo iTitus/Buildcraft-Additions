@@ -7,6 +7,7 @@ import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import buildcraftAdditions.tileEntities.TileCoolingTower;
@@ -30,11 +31,11 @@ public class ContainerCoolingTower extends ContainerBase<TileCoolingTower> {
 	public void addCraftingToCrafters(ICrafting crafting) {
 		super.addCraftingToCrafters(crafting);
 		crafting.sendProgressBarUpdate(this, 0, MathHelper.floor_float(inventory.heat * 32));
-		crafting.sendProgressBarUpdate(this, 1, inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().fluidID : -1);
+		crafting.sendProgressBarUpdate(this, 1, inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().getFluidID() : -1);
 		crafting.sendProgressBarUpdate(this, 2, inventory.input.getFluidAmount());
-		crafting.sendProgressBarUpdate(this, 3, inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().fluidID : -1);
+		crafting.sendProgressBarUpdate(this, 3, inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().getFluidID() : -1);
 		crafting.sendProgressBarUpdate(this, 4, inventory.output.getFluidAmount());
-		crafting.sendProgressBarUpdate(this, 5, inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().fluidID : -1);
+		crafting.sendProgressBarUpdate(this, 5, inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().getFluidID() : -1);
 		crafting.sendProgressBarUpdate(this, 6, inventory.coolant.getFluidAmount());
 	}
 
@@ -48,27 +49,27 @@ public class ContainerCoolingTower extends ContainerBase<TileCoolingTower> {
 					ICrafting crafting = (ICrafting) o;
 					if (heat != MathHelper.floor_float(inventory.heat * 32))
 						crafting.sendProgressBarUpdate(this, 0, MathHelper.floor_float(inventory.heat * 32));
-					if (fluidIDInput != (inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().fluidID : -1))
-						crafting.sendProgressBarUpdate(this, 1, inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().fluidID : -1);
+					if (fluidIDInput != (inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().getFluidID() : -1))
+						crafting.sendProgressBarUpdate(this, 1, inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().getFluidID() : -1);
 					if (fluidAmountInput != inventory.input.getFluidAmount())
 						crafting.sendProgressBarUpdate(this, 2, inventory.input.getFluidAmount());
-					if (fluidIDOutput != (inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().fluidID : -1))
-						crafting.sendProgressBarUpdate(this, 3, inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().fluidID : -1);
+					if (fluidIDOutput != (inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().getFluidID() : -1))
+						crafting.sendProgressBarUpdate(this, 3, inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().getFluidID() : -1);
 					if (fluidAmountOutput != inventory.output.getFluidAmount())
 						crafting.sendProgressBarUpdate(this, 4, inventory.output.getFluidAmount());
-					if (fluidIDCoolant != (inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().fluidID : -1))
-						crafting.sendProgressBarUpdate(this, 5, inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().fluidID : -1);
+					if (fluidIDCoolant != (inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().getFluidID() : -1))
+						crafting.sendProgressBarUpdate(this, 5, inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().getFluidID() : -1);
 					if (fluidAmountCoolant != inventory.coolant.getFluidAmount())
 						crafting.sendProgressBarUpdate(this, 6, inventory.coolant.getFluidAmount());
 				}
 			}
 		}
 		heat = MathHelper.floor_float(inventory.heat * 32);
-		fluidIDInput = inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().fluidID : -1;
+		fluidIDInput = inventory.input.getFluidAmount() > 0 ? inventory.input.getFluid().getFluidID() : -1;
 		fluidAmountInput = inventory.input.getFluidAmount();
-		fluidIDOutput = inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().fluidID : -1;
+		fluidIDOutput = inventory.output.getFluidAmount() > 0 ? inventory.output.getFluid().getFluidID() : -1;
 		fluidAmountOutput = inventory.output.getFluidAmount();
-		fluidIDCoolant = inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().fluidID : -1;
+		fluidIDCoolant = inventory.coolant.getFluidAmount() > 0 ? inventory.coolant.getFluid().getFluidID() : -1;
 		fluidAmountCoolant = inventory.coolant.getFluidAmount();
 	}
 
@@ -82,37 +83,37 @@ public class ContainerCoolingTower extends ContainerBase<TileCoolingTower> {
 				break;
 			case 1:
 				if (value >= 0)
-					inventory.input.setFluid(new FluidStack(value, inventory.input.getFluidAmount()));
+					inventory.input.setFluid(new FluidStack(FluidRegistry.getFluid(value), inventory.input.getFluidAmount()));
 				else
 					inventory.input.setFluid(null);
 				break;
 			case 2:
 				if (value > 0 && inventory.input.getFluid() != null)
-					inventory.input.setFluid(new FluidStack(inventory.input.getFluid().fluidID, value));
+					inventory.input.setFluid(new FluidStack(inventory.input.getFluid(), value));
 				else
 					inventory.input.setFluid(null);
 				break;
 			case 3:
 				if (value >= 0)
-					inventory.output.setFluid(new FluidStack(value, inventory.output.getFluidAmount()));
+					inventory.output.setFluid(new FluidStack(FluidRegistry.getFluid(value), inventory.output.getFluidAmount()));
 				else
 					inventory.output.setFluid(null);
 				break;
 			case 4:
 				if (value > 0 && inventory.output.getFluid() != null)
-					inventory.output.setFluid(new FluidStack(inventory.output.getFluid().fluidID, value));
+					inventory.output.setFluid(new FluidStack(inventory.output.getFluid(), value));
 				else
 					inventory.output.setFluid(null);
 				break;
 			case 5:
 				if (value >= 0)
-					inventory.coolant.setFluid(new FluidStack(value, inventory.coolant.getFluidAmount()));
+					inventory.coolant.setFluid(new FluidStack(FluidRegistry.getFluid(value), inventory.coolant.getFluidAmount()));
 				else
 					inventory.coolant.setFluid(null);
 				break;
 			case 6:
 				if (value > 0 && inventory.coolant.getFluid() != null)
-					inventory.coolant.setFluid(new FluidStack(inventory.coolant.getFluid().fluidID, value));
+					inventory.coolant.setFluid(new FluidStack(inventory.coolant.getFluid(), value));
 				else
 					inventory.coolant.setFluid(null);
 				break;

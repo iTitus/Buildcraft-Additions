@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
 
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
@@ -70,7 +71,7 @@ public class Tank extends FluidTank implements ISyncObject {
 
 	@Override
 	public void writeToByteBuff(ByteBuf buf) {
-		buf.writeInt(fluid != null ? fluid.fluidID : -1);
+		buf.writeInt(fluid != null ? fluid.getFluidID() : -1);
 		buf.writeInt(getFluidAmount());
 		ByteBufUtils.writeTag(buf, fluid != null ? fluid.tag : null);
 	}
@@ -83,6 +84,6 @@ public class Tank extends FluidTank implements ISyncObject {
 		if (id < 0 || amount <= 0)
 			setFluid(null);
 		else
-			setFluid(new FluidStack(id, amount, tag));
+			setFluid(new FluidStack(FluidRegistry.getFluid(id), amount, tag));
 	}
 }
