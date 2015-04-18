@@ -19,8 +19,8 @@ public class AchievementBCA extends Achievement {
 	}
 
 	public AchievementBCA(String name, int x, int y, ItemStack icon, Achievement parent) {
-		super("achievement.bca." + name, "achievement.bca." + name, x, y, icon, parent);
-		registerStat();
+		super("bca." + name, "bca." + name, x, y, icon, parent);
+		BCAAchievements.registerAchievement(this);
 	}
 
 	public AchievementBCA(String name, int x, int y, Item icon) {
@@ -39,4 +39,7 @@ public class AchievementBCA extends Achievement {
 		this(name, x, y, new ItemStack(icon), parent);
 	}
 
+	public boolean isValid() {
+		return theItemStack != null && theItemStack.getItem() != null;
+	}
 }

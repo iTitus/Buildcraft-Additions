@@ -13,6 +13,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,10 +28,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.ItemFluidContainer;
 
 import buildcraftAdditions.BuildcraftAdditions;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
+import buildcraftAdditions.reference.ItemsAndBlocks;
 import buildcraftAdditions.utils.RenderUtils;
 import buildcraftAdditions.utils.Utils;
 
-public class ItemCanister extends ItemFluidContainer {
+public class ItemCanister extends ItemFluidContainer implements ICraftingAchievement {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon overlay;
@@ -86,5 +91,16 @@ public class ItemCanister extends ItemFluidContainer {
 	@SideOnly(Side.CLIENT)
 	public IIcon getOverlay() {
 		return overlay;
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		if (crafting.getItem() == ItemsAndBlocks.ironCanister)
+			return BCAAchievements.ironCanisterCrafting;
+		if (crafting.getItem() == ItemsAndBlocks.goldCanister)
+			return BCAAchievements.goldCanisterCrafting;
+		if (crafting.getItem() == ItemsAndBlocks.diamondCanister)
+			return BCAAchievements.diamondCanisterCrafting;
+		return null;
 	}
 }

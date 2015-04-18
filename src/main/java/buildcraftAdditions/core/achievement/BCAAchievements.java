@@ -1,9 +1,5 @@
 package buildcraftAdditions.core.achievement;
 
-import java.util.List;
-
-import net.minecraft.stats.Achievement;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -11,6 +7,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 
+import buildcraftAdditions.reference.ItemsAndBlocks;
 import buildcraftAdditions.reference.Variables;
 
 /**
@@ -23,13 +20,24 @@ import buildcraftAdditions.reference.Variables;
 public class BCAAchievements {
 
 	public static AchievementPage achievementPage = new AchievementPage(Variables.MOD.NAME);
-
-	static {
-		init();
-	}
+	public static AchievementBCA
+			ironCanisterCrafting,
+			goldCanisterCrafting,
+			diamondCanisterCrafting,
+			powerCapsuleTier1Crafting,
+			powerCapsuleTier2Crafting,
+			powerCapsuleTier3Crafting;
 
 	public static void init() {
 		AchievementPage.registerAchievementPage(achievementPage);
+
+		ironCanisterCrafting = new AchievementBCA("ironCanisterCrafting", 0, -2, ItemsAndBlocks.ironCanister);
+		goldCanisterCrafting = new AchievementBCA("goldCanisterCrafting", 2, -2, ItemsAndBlocks.goldCanister, ironCanisterCrafting);
+		diamondCanisterCrafting = new AchievementBCA("diamondCanisterCrafting", 4, -2, ItemsAndBlocks.diamondCanister, goldCanisterCrafting);
+		powerCapsuleTier1Crafting = new AchievementBCA("powerCapsuleTier1Crafting", 0, -1, ItemsAndBlocks.powerCapsuleTier1);
+		powerCapsuleTier2Crafting = new AchievementBCA("powerCapsuleTier2Crafting", 2, -1, ItemsAndBlocks.powerCapsuleTier2, powerCapsuleTier1Crafting);
+		powerCapsuleTier3Crafting = new AchievementBCA("powerCapsuleTier3Crafting", 4, -1, ItemsAndBlocks.powerCapsuleTier3, powerCapsuleTier2Crafting);
+
 
 		BCAAchievementEventHandler eventHandler = new BCAAchievementEventHandler();
 		FMLCommonHandler.instance().bus().register(eventHandler);
@@ -37,12 +45,11 @@ public class BCAAchievements {
 	}
 
 	public static AchievementBCA registerAchievement(AchievementBCA achievement) {
-		achievementPage.getAchievements().add(achievement);
+		if (achievement != null && achievement.isValid() && !achievementPage.getAchievements().contains(achievement)) {
+			achievement.registerStat();
+			achievementPage.getAchievements().add(achievement);
+		}
 		return achievement;
-	}
-
-	public static List<Achievement> getAchievements() {
-		return achievementPage.getAchievements();
 	}
 
 	public static class BCAAchievementEventHandler {

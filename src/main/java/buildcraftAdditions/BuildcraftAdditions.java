@@ -33,6 +33,7 @@ import buildcraftAdditions.compat.imc.IMCSender;
 import buildcraftAdditions.config.ConfigurationHandler;
 import buildcraftAdditions.core.GuiHandler;
 import buildcraftAdditions.core.SpecialListMananger;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.creative.TabBCAdditions;
 import buildcraftAdditions.creative.TabCanisters;
 import buildcraftAdditions.creative.TabDusts;
@@ -96,6 +97,7 @@ public class BuildcraftAdditions {
 		MinecraftForge.EVENT_BUS.register(new EventListener.Forge());
 		IMCSender.sendMessages();
 		ItemsAndBlocks.registerTileEntities();
+		BCAAchievements.init();
 
 		int meta = 1;
 		BCAItemManager.dusts.addDust(meta++, "Iron", 0xD2CEC9, DustTypes.METAL_DUST);
