@@ -15,28 +15,32 @@ import buildcraftAdditions.listeners.FlightTracker;
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
 public class MessageFlightSync implements IMessage, IMessageHandler<MessageFlightSync, IMessage> {
-	public boolean wantsToFly;
+	public boolean wantsToFly, wantsToMove;
 
 	public MessageFlightSync() {
 	}
 
-	public MessageFlightSync(boolean wantsToFly) {
+	public MessageFlightSync(boolean wantsToFly, boolean wantsToMove) {
 		this.wantsToFly = wantsToFly;
+		this.wantsToMove = wantsToMove;
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		wantsToFly = buf.readBoolean();
+		wantsToMove = buf.readBoolean();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeBoolean(wantsToFly);
+		buf.writeBoolean(wantsToMove);
 	}
 
 	@Override
 	public IMessage onMessage(MessageFlightSync message, MessageContext ctx) {
 		FlightTracker.setJumping(ctx.getServerHandler().playerEntity, message.wantsToFly);
+		FlightTracker.setMoving(ctx.getServerHandler().playerEntity, message.wantsToMove);
 		return null;
 	}
 }
