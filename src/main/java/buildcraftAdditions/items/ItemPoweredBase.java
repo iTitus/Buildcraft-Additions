@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,6 +16,10 @@ import net.minecraftforge.common.util.Constants;
 
 import cofh.api.energy.IEnergyContainerItem;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
+import buildcraftAdditions.reference.ItemsAndBlocks;
 import buildcraftAdditions.utils.Utils;
 
 /**
@@ -24,7 +29,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem {
+public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem, ICraftingAchievement {
 
 	protected int capacity;
 	protected int maxReceive;
@@ -126,4 +131,14 @@ public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem {
 		return capacity;
 	}
 
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier1)
+			return BCAAchievements.powerCapsuleTier1Crafting;
+		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier2)
+			return BCAAchievements.powerCapsuleTier2Crafting;
+		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier3)
+			return BCAAchievements.powerCapsuleTier3Crafting;
+		return null;
+	}
 }

@@ -1,5 +1,8 @@
 package buildcraftAdditions.core.achievement;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -26,7 +29,19 @@ public class BCAAchievements {
 			diamondCanisterCrafting,
 			powerCapsuleTier1Crafting,
 			powerCapsuleTier2Crafting,
-			powerCapsuleTier3Crafting;
+			powerCapsuleTier3Crafting,
+			heatedFurnaceCrafting,
+			basicCoilCrafting,
+			lavaCoilCrafting,
+			kineticCoilCrafting,
+			basicDusterCrafting,
+			semiAutomaticDusterCafting,
+			mechanicalDusterCrafting,
+			kineticDusterCafting,
+			kebT1Crafting,
+			kebT2Crafting,
+			kebT3Cafting;
+
 
 	public static void init() {
 		AchievementPage.registerAchievementPage(achievementPage);
@@ -61,6 +76,13 @@ public class BCAAchievements {
 					AchievementBCA achievementBCA = ((ICraftingAchievement) event.crafting.getItem()).getAchievement(event.player, event.crafting, event.craftMatrix);
 					if (achievementBCA != null)
 						event.player.addStat(achievementBCA, 1);
+				} else if (event.crafting.getItem() instanceof ItemBlock) {
+					Block block = ((ItemBlock) event.crafting.getItem()).field_150939_a;
+					if (block instanceof ICraftingAchievement) {
+						AchievementBCA achievementBCA = ((ICraftingAchievement) block).getAchievement(event.player, event.crafting, event.craftMatrix);
+						if (achievementBCA != null)
+							event.player.addStat(achievementBCA, 1);
+					}
 				}
 			}
 		}
@@ -72,6 +94,13 @@ public class BCAAchievements {
 					AchievementBCA achievementBCA = ((IPickupAchievement) event.pickedUp.getEntityItem().getItem()).getAchievement(event.player, event.pickedUp);
 					if (achievementBCA != null)
 						event.player.addStat(achievementBCA, 1);
+				} else if (event.pickedUp.getEntityItem().getItem() instanceof ItemBlock) {
+					Block block = ((ItemBlock) event.pickedUp.getEntityItem().getItem()).field_150939_a;
+					if (block instanceof IPickupAchievement) {
+						AchievementBCA achievementBCA = ((IPickupAchievement) block).getAchievement(event.player, event.pickedUp);
+						if (achievementBCA != null)
+							event.player.addStat(achievementBCA, 1);
+					}
 				}
 			}
 		}
