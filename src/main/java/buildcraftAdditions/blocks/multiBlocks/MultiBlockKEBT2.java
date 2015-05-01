@@ -2,11 +2,15 @@ package buildcraftAdditions.blocks.multiBlocks;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.multiBlocks.MultiBlockPaternKEBT2;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.Bases.TileKineticEnergyBufferBase;
@@ -20,7 +24,7 @@ import buildcraftAdditions.utils.PlayerUtils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class MultiBlockKEBT2 extends MultiBlockBase {
+public class MultiBlockKEBT2 extends MultiBlockBase implements ICraftingAchievement {
 
 	public MultiBlockKEBT2() {
 		super("blockKEBT2", Variables.Identifiers.KEBT2, new MultiBlockPaternKEBT2(), "energyBufferMultiblockRaw");
@@ -49,5 +53,10 @@ public class MultiBlockKEBT2 extends MultiBlockBase {
 				keb.destroyer = (player);
 			}
 		}
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.kebT2Crafting;
 	}
 }

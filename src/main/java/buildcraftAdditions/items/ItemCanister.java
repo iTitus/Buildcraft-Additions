@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -97,10 +98,22 @@ public class ItemCanister extends ItemFluidContainer implements ICraftingAchieve
 	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
 		if (crafting.getItem() == ItemsAndBlocks.ironCanister)
 			return BCAAchievements.ironCanisterCrafting;
-		if (crafting.getItem() == ItemsAndBlocks.goldCanister)
+		else if (crafting.getItem() == ItemsAndBlocks.goldCanister)
 			return BCAAchievements.goldCanisterCrafting;
-		if (crafting.getItem() == ItemsAndBlocks.diamondCanister)
+		else if (crafting.getItem() == ItemsAndBlocks.diamondCanister)
 			return BCAAchievements.diamondCanisterCrafting;
 		return null;
+	}
+
+	@Override
+	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
+		if (stack == null || stack.getItem() == null)
+			return;
+		if (stack.getItem() == ItemsAndBlocks.ironCanister)
+			BCAAchievements.ironCanisterCrafting.trigger(player);
+		else if (stack.getItem() == ItemsAndBlocks.goldCanister)
+			BCAAchievements.goldCanisterCrafting.trigger(player);
+		else if (stack.getItem() == ItemsAndBlocks.diamondCanister)
+			BCAAchievements.diamondCanisterCrafting.trigger(player);
 	}
 }

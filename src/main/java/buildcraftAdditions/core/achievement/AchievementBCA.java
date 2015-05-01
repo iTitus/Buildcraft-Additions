@@ -1,6 +1,7 @@
 package buildcraftAdditions.core.achievement;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
@@ -41,5 +42,19 @@ public class AchievementBCA extends Achievement {
 
 	public boolean isValid() {
 		return theItemStack != null && theItemStack.getItem() != null;
+	}
+
+	public AchievementBCA setSpecial() {
+		return (AchievementBCA) super.setSpecial();
+	}
+
+	public void trigger(EntityPlayer player) {
+		trigger(player, 1);
+	}
+
+	public void trigger(EntityPlayer player, int count) {
+		if (player != null) {
+			player.addStat(this, count);
+		}
 	}
 }

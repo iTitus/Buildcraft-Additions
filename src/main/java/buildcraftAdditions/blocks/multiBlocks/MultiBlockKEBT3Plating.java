@@ -2,10 +2,14 @@ package buildcraftAdditions.blocks.multiBlocks;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.multiBlocks.MultiBlockPaternKEBT3;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.Bases.TileKineticEnergyBufferBase;
@@ -19,7 +23,7 @@ import buildcraftAdditions.utils.PlayerUtils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class MultiBlockKEBT3Plating extends MultiBlockBase {
+public class MultiBlockKEBT3Plating extends MultiBlockBase implements ICraftingAchievement {
 
 	public MultiBlockKEBT3Plating() {
 		super("blockKEBT3Plating", Variables.Identifiers.KEBT3_PLATING, new MultiBlockPaternKEBT3(), "energyBufferMultiblockPlating");
@@ -37,5 +41,10 @@ public class MultiBlockKEBT3Plating extends MultiBlockBase {
 			if (tileEntity instanceof TileKineticEnergyBufferBase)
 				((TileKineticEnergyBufferBase) tileEntity).setOwner(PlayerUtils.getPlayerUUID((EntityPlayer) entity));
 		}
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.kebT3Crafting;
 	}
 }

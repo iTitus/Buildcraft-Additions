@@ -2,6 +2,8 @@ package buildcraftAdditions.blocks;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -9,6 +11,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.tileEntities.TileBasicDuster;
 
 /**
@@ -39,5 +43,10 @@ public class BlockBasicDuster extends BlockDusterBase {
 			if (tileEntity instanceof TileBasicDuster)
 				((TileBasicDuster) tileEntity).makeProgress((EntityPlayer) entity);
 		}
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.basicDusterCrafting;
 	}
 }

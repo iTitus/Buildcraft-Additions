@@ -6,6 +6,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.utils.RenderUtils;
 
 /**
@@ -15,7 +16,7 @@ import buildcraftAdditions.utils.RenderUtils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public abstract class BlockCoilBase extends BlockBase {
+public abstract class BlockCoilBase extends BlockBase implements ICraftingAchievement {
 
 	private final String coilType;
 
@@ -64,4 +65,5 @@ public abstract class BlockCoilBase extends BlockBase {
 		top = RenderUtils.registerIcon(register, "coil" + coilType + "Top");
 		bottom = RenderUtils.registerIcon(register, "coil" + coilType + "Bottom");
 	}
+
 }

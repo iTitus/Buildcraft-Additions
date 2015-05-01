@@ -1,10 +1,15 @@
 package buildcraftAdditions.blocks;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import buildcraft.api.power.ILaserTargetBlock;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.tileEntities.TileKineticCoil;
 
 /**
@@ -25,4 +30,8 @@ public class BlockKineticCoil extends BlockCoilBase implements ILaserTargetBlock
 		return new TileKineticCoil();
 	}
 
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.kineticCoilCrafting;
+	}
 }

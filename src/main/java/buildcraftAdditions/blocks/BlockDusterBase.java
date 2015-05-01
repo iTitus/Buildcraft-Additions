@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import buildcraftAdditions.api.recipe.BCARecipeManager;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.tileEntities.Bases.TileBaseDuster;
 import buildcraftAdditions.utils.Utils;
 
@@ -16,7 +17,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public abstract class BlockDusterBase extends BlockRotationBase {
+public abstract class BlockDusterBase extends BlockRotationBase implements ICraftingAchievement {
 
 	protected final String type;
 

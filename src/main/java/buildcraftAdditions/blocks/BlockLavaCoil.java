@@ -1,10 +1,14 @@
 package buildcraftAdditions.blocks;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.tileEntities.TileLavaCoil;
 import buildcraftAdditions.utils.Utils;
 
@@ -40,5 +44,10 @@ public class BlockLavaCoil extends BlockCoilBase {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileLavaCoil();
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.lavaCoilCrafting;
 	}
 }

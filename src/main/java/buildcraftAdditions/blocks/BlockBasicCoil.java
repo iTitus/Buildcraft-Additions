@@ -1,10 +1,15 @@
 package buildcraftAdditions.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import buildcraftAdditions.BuildcraftAdditions;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.TileBasicCoil;
 
@@ -36,5 +41,10 @@ public class BlockBasicCoil extends BlockCoilBase {
 			player.openGui(BuildcraftAdditions.instance, Variables.Gui.BASIC_COIL.ordinal(), world, x, y, z);
 
 		return true;
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.basicCoilCrafting;
 	}
 }

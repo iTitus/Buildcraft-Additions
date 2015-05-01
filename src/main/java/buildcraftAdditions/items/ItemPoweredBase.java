@@ -8,6 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -135,10 +136,22 @@ public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem, I
 	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
 		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier1)
 			return BCAAchievements.powerCapsuleTier1Crafting;
-		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier2)
+		else if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier2)
 			return BCAAchievements.powerCapsuleTier2Crafting;
-		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier3)
+		else if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier3)
 			return BCAAchievements.powerCapsuleTier3Crafting;
 		return null;
+	}
+
+	@Override
+	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
+		if (stack == null || stack.getItem() == null)
+			return;
+		if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier1)
+			BCAAchievements.powerCapsuleTier1Crafting.trigger(player);
+		else if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier2)
+			BCAAchievements.powerCapsuleTier2Crafting.trigger(player);
+		else if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier3)
+			BCAAchievements.powerCapsuleTier3Crafting.trigger(player);
 	}
 }

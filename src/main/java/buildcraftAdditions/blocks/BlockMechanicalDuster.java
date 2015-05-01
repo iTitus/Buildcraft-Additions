@@ -2,6 +2,8 @@ package buildcraftAdditions.blocks;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -10,6 +12,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.tileEntities.TileMechanicalDuster;
 import buildcraftAdditions.utils.RenderUtils;
 
@@ -101,5 +105,10 @@ public class BlockMechanicalDuster extends BlockDusterBase {
 		top[1] = RenderUtils.registerIcon(register, "duster" + type + "Top1");
 		top[2] = RenderUtils.registerIcon(register, "duster" + type + "Top2");
 		top[3] = RenderUtils.registerIcon(register, "duster" + type + "Top3");
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.mechanicalDusterCrafting;
 	}
 }

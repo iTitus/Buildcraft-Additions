@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -16,6 +17,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraftAdditions.BuildcraftAdditions;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.TileHeatedFurnace;
 import buildcraftAdditions.utils.RenderUtils;
@@ -28,7 +32,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class BlockHeatedFurnace extends BlockBase {
+public class BlockHeatedFurnace extends BlockBase implements ICraftingAchievement {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon front, back, sides, top, bottom, frontActivated;
@@ -129,5 +133,10 @@ public class BlockHeatedFurnace extends BlockBase {
 		back = RenderUtils.registerIcon(register, "furnaceBack");
 		bottom = RenderUtils.registerIcon(register, "furnaceBottom");
 		sides = RenderUtils.registerIcon(register, "furnaceSide");
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.heatedFurnaceCrafting;
 	}
 }

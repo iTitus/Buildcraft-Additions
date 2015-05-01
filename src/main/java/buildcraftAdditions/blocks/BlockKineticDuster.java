@@ -1,10 +1,15 @@
 package buildcraftAdditions.blocks;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import buildcraft.api.power.ILaserTargetBlock;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.tileEntities.TileKineticDuster;
 
 /**
@@ -48,5 +53,10 @@ public class BlockKineticDuster extends BlockDusterBase implements ILaserTargetB
 	@Override
 	public int getRenderType() {
 		return -1;
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.kineticDusterCrafting;
 	}
 }
