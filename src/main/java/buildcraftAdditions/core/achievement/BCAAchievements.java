@@ -72,7 +72,7 @@ public class BCAAchievements {
 		goldCanisterCrafting = new AchievementBCA("goldCanisterCrafting", 0, -2, ItemsAndBlocks.goldCanister, ironCanisterCrafting);
 		diamondCanisterCrafting = new AchievementBCA("diamondCanisterCrafting", 2, -2, ItemsAndBlocks.diamondCanister, goldCanisterCrafting);
 
-		powerCapsuleTier1Crafting = new AchievementBCA("powerCapsuleTier1Crafting", -3, -1, ItemsAndBlocks.powerCapsuleTier1);
+		powerCapsuleTier1Crafting = new AchievementBCA("powerCapsuleTier1Crafting", -2, -1, ItemsAndBlocks.powerCapsuleTier1);
 		powerCapsuleTier2Crafting = new AchievementBCA("powerCapsuleTier2Crafting", 0, -1, ItemsAndBlocks.powerCapsuleTier2, powerCapsuleTier1Crafting);
 		powerCapsuleTier3Crafting = new AchievementBCA("powerCapsuleTier3Crafting", 2, -1, ItemsAndBlocks.powerCapsuleTier3, powerCapsuleTier2Crafting);
 
