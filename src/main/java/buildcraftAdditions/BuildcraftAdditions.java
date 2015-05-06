@@ -97,6 +97,7 @@ public class BuildcraftAdditions {
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, GuiHandler.INSTANCE);
 		FMLCommonHandler.instance().bus().register(new EventListener.FML());
 		MinecraftForge.EVENT_BUS.register(new EventListener.Forge());
+		proxy.addListeners();
 		IMCSender.sendMessages();
 		ItemsAndBlocks.registerTileEntities();
 		BCAAchievements.init();
@@ -113,7 +114,7 @@ public class BuildcraftAdditions {
 		BCAItemManager.dusts.addDust(meta++, "EnderPearl", 0x105E51, new DustTypes.SimpleDustAlwaysValid(new ItemStack(Items.ender_pearl)));
 		BCAItemManager.dusts.addDust(meta, "NetherQuartz", 0xDBCCBF, new DustTypes.SimpleDustAlwaysValid(new ItemStack(Items.coal, 1, 1)));
 		meta = 83;
-		BCAItemManager.dusts.addDust(meta, "GildedRedMetal", 0xFF6E1B, DustTypes.METAL_DUST);
+		BCAItemManager.dusts.addDust(meta, "GildedRedMetal", 0xFF6E1B, DustTypes.METAL_DUST_FORCE_REGISTRATION);
 
 		BCARecipeManager.duster.addRecipe("oreRedstone", new ItemStack(Items.redstone, 10));
 		BCARecipeManager.duster.addRecipe("oreCoal", new ItemStack(Items.coal, 2));
