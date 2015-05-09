@@ -135,6 +135,6 @@ public class ItemPortableLaser extends ItemInventoryPoweredBase implements IPick
 
 	@Override
 	public AchievementBCA getAchievement(EntityPlayer player, EntityItem pickedUp) {
-		return BCAAchievements.kineticMultiToolPickup;
+		return BCAAchievements.portableLaserPickup;
 	}
 }

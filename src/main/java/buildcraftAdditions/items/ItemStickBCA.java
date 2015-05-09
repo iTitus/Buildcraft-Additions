@@ -69,7 +69,6 @@ public class ItemStickBCA extends ItemBase implements IPickupAchievement {
 
 	@Override
 	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
-		System.out.println("stack = [" + stack + "], world = [" + world + "], player = [" + player + "]");
 		if (stack != null && stack.getItem() == ItemsAndBlocks.emeraldStick)
 			BCAAchievements.emeraldStickTrading.trigger(player);
 	}
