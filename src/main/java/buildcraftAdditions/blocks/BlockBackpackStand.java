@@ -3,12 +3,16 @@ package buildcraftAdditions.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.reference.ItemsAndBlocks;
 import buildcraftAdditions.tileEntities.TileBackpackStand;
 import buildcraftAdditions.utils.Raytracing;
@@ -21,7 +25,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class BlockBackpackStand extends BlockRotationBase {
+public class BlockBackpackStand extends BlockRotationBase implements ICraftingAchievement {
 	public IIcon icon;
 
 	public BlockBackpackStand() {
@@ -111,5 +115,10 @@ public class BlockBackpackStand extends BlockRotationBase {
 			if (!world.isRemote)
 				dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 		}
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.backpackStandCrafting;
 	}
 }

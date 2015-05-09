@@ -3,6 +3,8 @@ package buildcraftAdditions.items.dust;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -12,6 +14,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.api.item.BCAItemManager;
 import buildcraftAdditions.api.item.dust.IDust;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.IPickupAchievement;
 import buildcraftAdditions.utils.Utils;
 
 /**
@@ -21,7 +26,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemDust extends Item {
+public class ItemDust extends Item implements IPickupAchievement {
 
 	public ItemDust() {
 		setUnlocalizedName("dustUnknown");
@@ -65,5 +70,10 @@ public class ItemDust extends Item {
 		for (IDust dust : BCAItemManager.dusts.getDusts())
 			if (dust != null)
 				list.add(dust.getDustStack());
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, EntityItem pickedUp) {
+		return BCAAchievements.dustPickup;
 	}
 }

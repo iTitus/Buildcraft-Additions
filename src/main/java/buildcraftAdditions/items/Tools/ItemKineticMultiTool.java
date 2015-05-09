@@ -20,6 +20,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
@@ -41,6 +42,9 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.config.ConfigurationHandler;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.IPickupAchievement;
 import buildcraftAdditions.inventories.InventoryItem;
 import buildcraftAdditions.inventories.InventoryKineticMultiTool;
 import buildcraftAdditions.items.ItemInventoryPoweredBase;
@@ -55,7 +59,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemKineticMultiTool extends ItemInventoryPoweredBase {
+public class ItemKineticMultiTool extends ItemInventoryPoweredBase implements IPickupAchievement {
 
 	private static final Set<Material> effectiveMaterialsDrill = Sets.newHashSet(Material.rock, Material.iron, Material.ice, Material.glass, Material.piston, Material.anvil);
 	private static final Set<Block> effectiveBlocksDrill = Sets.newHashSet(Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail, Blocks.anvil);
@@ -553,5 +557,8 @@ public class ItemKineticMultiTool extends ItemInventoryPoweredBase {
 		return new InventoryKineticMultiTool(stack);
 	}
 
-
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, EntityItem pickedUp) {
+		return BCAAchievements.kineticMultiToolPickup;
+	}
 }

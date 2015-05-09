@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -18,7 +19,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.tools.IToolWrench;
 
 import buildcraftAdditions.BuildcraftAdditions;
-import buildcraftAdditions.client.render.blocks.RendererSidedTextures;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.TileItemSorter;
 import buildcraftAdditions.utils.RenderUtils;
@@ -31,7 +34,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class BlockItemSorter extends BlockBase {
+public class BlockItemSorter extends BlockBase implements ICraftingAchievement {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon textureIn, textureOut, textureSide, textureSide2;
@@ -125,5 +128,10 @@ public class BlockItemSorter extends BlockBase {
 		if (rotatedMeta > 5)
 			rotatedMeta = 0;
 		return rotatedMeta;
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.itemSorterCrafting;
 	}
 }

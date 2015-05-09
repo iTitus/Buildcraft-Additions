@@ -1,6 +1,7 @@
 package buildcraftAdditions.items.Tools;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.config.ConfigurationHandler;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.IPickupAchievement;
 import buildcraftAdditions.entities.EntityLaserShot;
 import buildcraftAdditions.inventories.InventoryItem;
 import buildcraftAdditions.inventories.InventoryPortableLaser;
@@ -27,7 +31,7 @@ import buildcraftAdditions.utils.RenderUtils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemPortableLaser extends ItemInventoryPoweredBase {
+public class ItemPortableLaser extends ItemInventoryPoweredBase implements IPickupAchievement {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -127,5 +131,10 @@ public class ItemPortableLaser extends ItemInventoryPoweredBase {
 			return icons[1];
 		//else if (f >= 0.1)
 		return icons[0];
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, EntityItem pickedUp) {
+		return BCAAchievements.kineticMultiToolPickup;
 	}
 }

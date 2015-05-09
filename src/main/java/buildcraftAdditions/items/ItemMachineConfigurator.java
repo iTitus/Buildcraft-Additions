@@ -1,12 +1,16 @@
 package buildcraftAdditions.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.api.configurableOutput.IConfigurableOutput;
+import buildcraftAdditions.core.achievement.AchievementBCA;
+import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.interfaces.IUpgradableMachine;
 
@@ -17,7 +21,7 @@ import buildcraftAdditions.tileEntities.interfaces.IUpgradableMachine;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemMachineConfigurator extends ItemBase {
+public class ItemMachineConfigurator extends ItemBase implements ICraftingAchievement {
 
 	public ItemMachineConfigurator() {
 		super("machineConfigurator");
@@ -34,5 +38,10 @@ public class ItemMachineConfigurator extends ItemBase {
 				player.openGui(BuildcraftAdditions.instance, Variables.Gui.MACHINE_CONFIGURATOR.ordinal(), world, x, y, z);
 		}
 		return true;
+	}
+
+	@Override
+	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
+		return BCAAchievements.machineConfiguratorCrafting;
 	}
 }

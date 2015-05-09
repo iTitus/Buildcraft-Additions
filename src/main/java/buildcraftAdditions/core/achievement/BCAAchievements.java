@@ -10,6 +10,8 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 
+import buildcraftAdditions.api.item.BCAItemManager;
+import buildcraftAdditions.api.item.dust.IDust;
 import buildcraftAdditions.reference.ItemsAndBlocks;
 import buildcraftAdditions.reference.Variables;
 
@@ -61,8 +63,14 @@ public class BCAAchievements {
 			kineticMultiToolPickup,
 			pipeColoringToolCrafting,
 			portableLaserPickup;
-	//TODO: Tool Core + Upgrades
+	//TODO: Tool Core + Tool Upgrades
 	//TODO: Machine Upgrades
+	//TODO: Grinding Wheel as a duster crafting component
+	//TODO: Wires (Iron, Gold, Diamond)
+	//TODO: Heat plating as a refinery/cooling tower component
+	//TODO: Kinetic Backpack in conjunction with the backpack stand
+	//TODO: Gilded Red Metal + Conductive Plating (^)
+	//TODO: Rocket Pants
 
 
 	public static void init() {
@@ -107,6 +115,21 @@ public class BCAAchievements {
 		fluidicCompressorCrafting = new AchievementBCA("fluidicCompressorCrafting", -3, -2, ItemsAndBlocks.fluidicCompressorBlock);
 
 		chargingStationCrafting = new AchievementBCA("chargingStationCrafting", -3, -1, ItemsAndBlocks.chargingStationBlock);
+
+		itemSorterCrafting = new AchievementBCA("itemSorterCrafting", -4, 3, ItemsAndBlocks.itemSorter);
+
+		backpackStandCrafting = new AchievementBCA("backpackStandCrafting", -3, 3, ItemsAndBlocks.backpackStand);
+
+		machineConfiguratorCrafting = new AchievementBCA("machineConfiguratorCrafting", -2, 3, ItemsAndBlocks.machineConfigurator);
+
+		IDust dust = BCAItemManager.dusts.getDust("Diamond");
+		dustPickup = new AchievementBCA("dustPickup", -1, 3, dust != null ? dust.getDustStack() : null);
+
+		kineticMultiToolPickup = new AchievementBCA("kineticMultiToolPickup", 0, 3, ItemsAndBlocks.itemKineticMultiTool);
+
+		pipeColoringToolCrafting = new AchievementBCA("pipeColoringToolCrafting", 1, 3, ItemsAndBlocks.pipeColoringTool);
+
+		portableLaserPickup = new AchievementBCA("portableLaserPickup", 2, 3, ItemsAndBlocks.portableLaser);
 
 		BCAAchievementEventHandler eventHandler = new BCAAchievementEventHandler();
 		FMLCommonHandler.instance().bus().register(eventHandler);

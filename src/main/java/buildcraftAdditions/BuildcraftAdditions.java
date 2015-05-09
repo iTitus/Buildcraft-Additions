@@ -100,7 +100,6 @@ public class BuildcraftAdditions {
 		proxy.addListeners();
 		IMCSender.sendMessages();
 		ItemsAndBlocks.registerTileEntities();
-		BCAAchievements.init();
 
 		int meta = 1;
 		BCAItemManager.dusts.addDust(meta++, "Iron", 0xD2CEC9, DustTypes.METAL_DUST);
@@ -128,6 +127,7 @@ public class BuildcraftAdditions {
 
 		manager.init(event);
 		ItemsAndBlocks.addRecipes();
+		BCAAchievements.init();
 	}
 
 	@Mod.EventHandler
