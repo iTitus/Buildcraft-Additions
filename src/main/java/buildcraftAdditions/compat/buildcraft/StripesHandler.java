@@ -27,8 +27,8 @@ import buildcraftAdditions.tileEntities.Bases.TileKineticEnergyBufferBase;
 public class StripesHandler {
 
 	public static void register() {
-		PipeManager.registerStripesHandler(new StripesKEBBreakHandler());
-		PipeManager.registerStripesHandler(new StripesKEBPlaceHandler());
+		PipeManager.registerStripesHandler(new StripesKEBBreakHandler(), 1);
+		PipeManager.registerStripesHandler(new StripesKEBPlaceHandler(), 1);
 	}
 
 	public static class StripesKEBBreakHandler implements IStripesHandler {
