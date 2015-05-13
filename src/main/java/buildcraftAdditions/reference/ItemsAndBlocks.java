@@ -17,8 +17,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import buildcraft.api.recipes.BuildcraftRecipeRegistry;
-import buildcraft.silicon.ItemRedstoneChipset;
 
+import buildcraftAdditions.armour.ItemHoverBoots;
 import buildcraftAdditions.armour.ItemKineticBackpack;
 import buildcraftAdditions.armour.ItemRocketPants;
 import buildcraftAdditions.blocks.BlockBCKinesisPipeWood;
@@ -46,9 +46,6 @@ import buildcraftAdditions.blocks.multiBlocks.MultiBlockKEBT3Plating;
 import buildcraftAdditions.blocks.multiBlocks.MultiBlockRefineryValve;
 import buildcraftAdditions.blocks.multiBlocks.MultiBlockRefineryWalls;
 import buildcraftAdditions.compat.buildcraft.BCItems;
-import buildcraftAdditions.compat.buildcraft.recipe.ToolCoreRecipe;
-import buildcraftAdditions.compat.buildcraft.recipe.UpgradeRecipeStick;
-import buildcraftAdditions.compat.buildcraft.recipe.UpgradeRecipeUpgrade;
 import buildcraftAdditions.config.ConfigurationHandler;
 import buildcraftAdditions.core.VersionCheck;
 import buildcraftAdditions.items.ItemBase;
@@ -165,6 +162,7 @@ public final class ItemsAndBlocks {
 
 	public static ItemArmor kineticBackpack;
 	public static ItemArmor rocketPants;
+	public static ItemArmor hoverBoots;
 
 
 	public static void init() {
@@ -314,6 +312,9 @@ public final class ItemsAndBlocks {
 		conductivePlate = new ItemBase("conductivePlate");
 		GameRegistry.registerItem(conductivePlate, "condictuvePlate");
 
+		hoverBoots = new ItemHoverBoots();
+		GameRegistry.registerItem(hoverBoots, "hoverBoots");
+
 		//START BLOCKS
 
 		kinesisPipeWood = new BlockBCKinesisPipeWood();
@@ -407,20 +408,20 @@ public final class ItemsAndBlocks {
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeDrill);
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeDigger);
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeHoe);
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new ToolCoreRecipe());
+			/*BuildcraftRecipeRegistry.integrationTable.addRecipe(new ToolCoreRecipe());
 			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("drill"));
 			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("digger"));
 			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("chainsaw"));
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("hoe"));
+			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("hoe"));*/
 		}
 
 		if (ConfigurationHandler.enabled("MultiToolsArea")) {
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("area"));
+			//BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("area"));
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeArea, new ItemStack(Blocks.sticky_piston), new ItemStack(Items.ender_pearl), "ingotGold");
 		}
 
 		if (ConfigurationHandler.enabled("MultiToolsSilky")) {
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("silky"));
+			//BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("silky"));
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeSilky, new ItemStack(Items.string, 3), "slimeball", "ingotGold");
 		}
 
@@ -428,9 +429,9 @@ public final class ItemsAndBlocks {
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeFortune1, new ItemStack(Items.string, 3), "gemLapis", "blockLapis", "ingotGold");
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeFortune2, new ItemStack(ItemsAndBlocks.toolUpgradeFortune1), "gemDiamond", "blockLapis", "ingotGold");
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeFortune3, new ItemStack(ItemsAndBlocks.toolUpgradeFortune2), "gemEmerald", "blockLapis", "ingotGold");
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("fortune1"));
+			/*BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("fortune1"));
 			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("fortune2"));
-			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("fortune3"));
+			BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeUpgrade("fortune3"));*/
 		}
 
 		if (ConfigurationHandler.enabled("FluidCanisters")) {
@@ -503,7 +504,7 @@ public final class ItemsAndBlocks {
 			addAssemblyRecipe("portableLaser", ItemsAndBlocks.portableLaser, 8000, "blockGlass", "gemDiamond", "stickBlaze", "stickBlaze", BCItems.LASER, ItemsAndBlocks.toolCore);
 
 
-		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("goldStick", "stickGold", null, ItemRedstoneChipset.Chipset.IRON));
+		/*BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("goldStick", "stickGold", null, ItemRedstoneChipset.Chipset.IRON));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("diamondStick", "stickDiamond", "goldStick", ItemRedstoneChipset.Chipset.GOLD));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("emeraldStick", "stickEmerald", "diamondStick", ItemRedstoneChipset.Chipset.DIAMOND));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("netherStarStick", "stickNetherStar", "emeraldStick", ItemRedstoneChipset.Chipset.EMERALD, ItemRedstoneChipset.Chipset.PULSATING));
@@ -512,7 +513,7 @@ public final class ItemsAndBlocks {
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("redstoneStick", "stickRedstone", null, ItemRedstoneChipset.Chipset.IRON));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("glowstoneStick", "stickGlowstone", "redstoneStick", ItemRedstoneChipset.Chipset.RED));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("slimeStick", "stickSlime", "redstoneStick", ItemRedstoneChipset.Chipset.RED));
-		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("blazeStick", "stickBlaze", "redstoneStick", ItemRedstoneChipset.Chipset.RED));
+		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("blazeStick", "stickBlaze", "redstoneStick", ItemRedstoneChipset.Chipset.RED));*/
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemsAndBlocks.heatPlatingRaw, 2), "DD", "DD", 'D', "dustIron"));
 		GameRegistry.addSmelting(new ItemStack(ItemsAndBlocks.heatPlatingRaw), new ItemStack(ItemsAndBlocks.heatPlating), 0);
