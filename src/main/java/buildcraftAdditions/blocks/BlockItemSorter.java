@@ -54,7 +54,7 @@ public class BlockItemSorter extends BlockBase implements ICraftingAchievement {
 
 	@Override
 	public int getRenderType() {
-		return Variables.RenderIDs.SIDED_TEXTURES_RENDER_ID;
+		return Variables.RenderIDs.SORTER;
 	}
 
 	@Override
