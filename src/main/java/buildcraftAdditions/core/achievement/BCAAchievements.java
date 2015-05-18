@@ -24,6 +24,7 @@ import buildcraftAdditions.reference.Variables;
  */
 public class BCAAchievements {
 
+	public static StatBCA dustsDusted;
 	public static AchievementPage achievementPage = new AchievementPage(Variables.MOD.NAME);
 	public static AchievementBCA
 			ironCanisterCrafting,
@@ -73,8 +74,13 @@ public class BCAAchievements {
 	//TODO: Gilded Red Metal + Conductive Plating (^)
 	//TODO: Rocket Pants
 
+	//TODO: Special achievements
+
 
 	public static void init() {
+
+		dustsDusted = new StatBCA("dustsDusted");
+
 		AchievementPage.registerAchievementPage(achievementPage);
 
 		ironCanisterCrafting = new AchievementBCA("ironCanisterCrafting", -2, -2, ItemsAndBlocks.ironCanister);

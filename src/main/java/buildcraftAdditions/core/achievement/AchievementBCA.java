@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 
+import buildcraftAdditions.config.ConfigurationHandler;
+
 /**
  * Copyright (c) 2014-2015, AEnterprise
  * http://buildcraftadditions.wordpress.com/
@@ -41,7 +43,7 @@ public class AchievementBCA extends Achievement {
 	}
 
 	public boolean isValid() {
-		return theItemStack != null && theItemStack.getItem() != null;
+		return ConfigurationHandler.enableAchievements && theItemStack != null && theItemStack.getItem() != null;
 	}
 
 	public AchievementBCA setSpecial() {

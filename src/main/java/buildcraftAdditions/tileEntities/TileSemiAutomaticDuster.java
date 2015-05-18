@@ -3,6 +3,7 @@ package buildcraftAdditions.tileEntities;
 import net.minecraft.entity.player.EntityPlayer;
 
 import buildcraftAdditions.api.recipe.BCARecipeManager;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.Bases.TileDusterWithConfigurableOutput;
 
@@ -29,6 +30,7 @@ public class TileSemiAutomaticDuster extends TileDusterWithConfigurableOutput {
 			progress++;
 			spawnDustingParticles();
 			if (progress >= 8) {
+				BCAAchievements.dustsDusted.addStat(player, BCARecipeManager.duster.getRecipe(getStackInSlot(0)).getOutput(getStackInSlot(0)).stackSize);
 				dust();
 				progress = 0;
 				makeEurekaProgress(player);
