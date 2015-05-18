@@ -61,9 +61,9 @@ public abstract class BlockCoilBase extends BlockBase implements ICraftingAchiev
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
-		sides = RenderUtils.registerIcon(register, "coil" + coilType + "Sides");
-		top = RenderUtils.registerIcon(register, "coil" + coilType + "Top");
-		bottom = RenderUtils.registerIcon(register, "coil" + coilType + "Bottom");
+		sides = RenderUtils.registerIcon(register, "coils/" + coilType.toLowerCase() + "/Sides");
+		top = RenderUtils.registerIcon(register, "coils/" + coilType.toLowerCase() + "/Top");
+		bottom = RenderUtils.registerIcon(register, "coils/" + coilType.toLowerCase() + "/Bottom");
 	}
 
 }

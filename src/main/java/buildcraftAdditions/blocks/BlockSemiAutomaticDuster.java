@@ -5,11 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 import buildcraftAdditions.core.achievement.AchievementBCA;
 import buildcraftAdditions.core.achievement.BCAAchievements;
@@ -27,11 +23,8 @@ import eureka.api.EurekaAPI;
  */
 public class BlockSemiAutomaticDuster extends BlockDusterBase {
 
-	@SideOnly(Side.CLIENT)
-	private IIcon front, sides, top, bottom;
-
 	public BlockSemiAutomaticDuster() {
-		super("SemiAutomatic", "dusterSemiAutomatic");
+		super("SemiAutomatic", "dusters/semiAutomatic/");
 	}
 
 	@Override

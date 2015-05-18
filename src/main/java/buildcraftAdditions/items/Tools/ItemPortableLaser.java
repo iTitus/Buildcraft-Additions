@@ -105,10 +105,10 @@ public class ItemPortableLaser extends ItemInventoryPoweredBase implements IPick
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register) {
-		super.registerIcons(register);
+		this.itemIcon = RenderUtils.registerIcon(register, "portableLaser/base");
 		icons = new IIcon[5];
 		for (int i = 0; i < icons.length; i++)
-			icons[i] = RenderUtils.registerIcon(register, getName() + "_" + i);
+			icons[i] = RenderUtils.registerIcon(register, "portableLaser/" + i);
 	}
 
 	@Override
