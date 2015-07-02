@@ -1,5 +1,27 @@
 package buildcraftAdditions;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import buildcraftAdditions.api.item.BCAItemManager;
 import buildcraftAdditions.api.item.dust.IDust;
 import buildcraftAdditions.api.recipe.BCARecipeManager;
@@ -9,6 +31,7 @@ import buildcraftAdditions.compat.imc.IMCSender;
 import buildcraftAdditions.config.ConfigurationHandler;
 import buildcraftAdditions.core.GuiHandler;
 import buildcraftAdditions.core.SpecialListMananger;
+import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.creative.TabBCAdditions;
 import buildcraftAdditions.creative.TabCanisters;
 import buildcraftAdditions.creative.TabDusts;
@@ -24,20 +47,6 @@ import buildcraftAdditions.reference.ArmorLoader;
 import buildcraftAdditions.reference.BlockLoader;
 import buildcraftAdditions.reference.ItemLoader;
 import buildcraftAdditions.reference.Variables;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 /**
  * Copyright (c) 2014-2015, AEnterprise
@@ -46,7 +55,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-@Mod(modid = Variables.MOD.ID, name = Variables.MOD.NAME, version = "@MODVERSION@", guiFactory = "buildcraftAdditions.config.GuiFactory", dependencies = "required-after:BuildCraft|Core;required-after:eureka;before:zCraftingManager;required-after:Forge@[10.13.2.1236,);", acceptedMinecraftVersions = "1.7.10")
+@Mod(modid = Variables.MOD.ID, name = Variables.MOD.NAME, version = "@MODVERSION@", guiFactory = "buildcraftAdditions.config.GuiFactory", dependencies = "required-after:BuildCraft|Core@[7.0.0,);required-after:eureka;before:zCraftingManager;required-after:Forge@[10.13.3.1360,);", acceptedMinecraftVersions = "1.7.10")
 public class BuildcraftAdditions {
 
 	public static final CreativeTabs bcadditions = new TabBCAdditions();
@@ -86,6 +95,9 @@ public class BuildcraftAdditions {
 		OreDictionary.registerOre("blockSoulSand", Blocks.soul_sand);
 
 		manager.preInit(event);
+
+		BCAAchievements.init();
+
 	}
 
 	@Mod.EventHandler
