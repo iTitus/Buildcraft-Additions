@@ -12,7 +12,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 import buildcraftAdditions.api.item.BCAItemManager;
 import buildcraftAdditions.api.item.dust.IDust;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.reference.BlockLoader;
+import buildcraftAdditions.reference.ItemLoader;
 import buildcraftAdditions.reference.Variables;
 
 /**
@@ -83,60 +84,60 @@ public class BCAAchievements {
 
 		AchievementPage.registerAchievementPage(achievementPage);
 
-		ironCanisterCrafting = new AchievementBCA("ironCanisterCrafting", -2, -2, ItemsAndBlocks.ironCanister);
-		goldCanisterCrafting = new AchievementBCA("goldCanisterCrafting", 0, -2, ItemsAndBlocks.goldCanister, ironCanisterCrafting);
-		diamondCanisterCrafting = new AchievementBCA("diamondCanisterCrafting", 2, -2, ItemsAndBlocks.diamondCanister, goldCanisterCrafting);
+		ironCanisterCrafting = new AchievementBCA("ironCanisterCrafting", -2, -2, ItemLoader.ironCanister);
+		goldCanisterCrafting = new AchievementBCA("goldCanisterCrafting", 0, -2, ItemLoader.goldCanister, ironCanisterCrafting);
+		diamondCanisterCrafting = new AchievementBCA("diamondCanisterCrafting", 2, -2, ItemLoader.diamondCanister, goldCanisterCrafting);
 
-		powerCapsuleTier1Crafting = new AchievementBCA("powerCapsuleTier1Crafting", -2, -1, ItemsAndBlocks.powerCapsuleTier1);
-		powerCapsuleTier2Crafting = new AchievementBCA("powerCapsuleTier2Crafting", 0, -1, ItemsAndBlocks.powerCapsuleTier2, powerCapsuleTier1Crafting);
-		powerCapsuleTier3Crafting = new AchievementBCA("powerCapsuleTier3Crafting", 2, -1, ItemsAndBlocks.powerCapsuleTier3, powerCapsuleTier2Crafting);
+		powerCapsuleTier1Crafting = new AchievementBCA("powerCapsuleTier1Crafting", -2, -1, ItemLoader.powerCapsuleTier1);
+		powerCapsuleTier2Crafting = new AchievementBCA("powerCapsuleTier2Crafting", 0, -1, ItemLoader.powerCapsuleTier2, powerCapsuleTier1Crafting);
+		powerCapsuleTier3Crafting = new AchievementBCA("powerCapsuleTier3Crafting", 2, -1, ItemLoader.powerCapsuleTier3, powerCapsuleTier2Crafting);
 
-		heatedFurnaceCrafting = new AchievementBCA("heatedFurnaceCrafting", -4, 0, ItemsAndBlocks.heatedFurnaceBlock);
-		basicCoilCrafting = new AchievementBCA("basicCoilCrafting", -2, 0, ItemsAndBlocks.basicCoilBlock, heatedFurnaceCrafting);
-		lavaCoilCrafting = new AchievementBCA("lavaCoilCrafting", 0, 0, ItemsAndBlocks.lavaCoilBlock, basicCoilCrafting);
-		kineticCoilCrafting = new AchievementBCA("kineticCoilCrafting", 2, 0, ItemsAndBlocks.kineticCoil, lavaCoilCrafting);
+		heatedFurnaceCrafting = new AchievementBCA("heatedFurnaceCrafting", -4, 0, BlockLoader.heatedFurnaceBlock);
+		basicCoilCrafting = new AchievementBCA("basicCoilCrafting", -2, 0, BlockLoader.basicCoilBlock, heatedFurnaceCrafting);
+		lavaCoilCrafting = new AchievementBCA("lavaCoilCrafting", 0, 0, BlockLoader.lavaCoilBlock, basicCoilCrafting);
+		kineticCoilCrafting = new AchievementBCA("kineticCoilCrafting", 2, 0, BlockLoader.kineticCoil, lavaCoilCrafting);
 
-		basicDusterCrafting = new AchievementBCA("basicDusterCrafting", -4, 1, ItemsAndBlocks.basicDusterBlock);
-		semiAutomaticDusterCrafting = new AchievementBCA("semiAutomaticDusterCrafting", -2, 1, ItemsAndBlocks.semiAutomaticDusterBlock, basicDusterCrafting);
-		mechanicalDusterCrafting = new AchievementBCA("mechanicalDusterCrafting", 0, 1, ItemsAndBlocks.mechanicalDusterBlock, semiAutomaticDusterCrafting);
-		kineticDusterCrafting = new AchievementBCA("kineticDusterCrafting", 2, 1, ItemsAndBlocks.kineticDusterBlock, mechanicalDusterCrafting);
+		basicDusterCrafting = new AchievementBCA("basicDusterCrafting", -4, 1, BlockLoader.basicDusterBlock);
+		semiAutomaticDusterCrafting = new AchievementBCA("semiAutomaticDusterCrafting", -2, 1, BlockLoader.semiAutomaticDusterBlock, basicDusterCrafting);
+		mechanicalDusterCrafting = new AchievementBCA("mechanicalDusterCrafting", 0, 1, BlockLoader.mechanicalDusterBlock, semiAutomaticDusterCrafting);
+		kineticDusterCrafting = new AchievementBCA("kineticDusterCrafting", 2, 1, BlockLoader.kineticDusterBlock, mechanicalDusterCrafting);
 
-		kebT1Crafting = new AchievementBCA("kebT1Crafting", -2, -3, ItemsAndBlocks.kebT1);
-		kebT2Crafting = new AchievementBCA("kebT2Crafting", 0, -3, ItemsAndBlocks.kebT2, kebT1Crafting);
-		kebT3Crafting = new AchievementBCA("kebT3Crafting", 2, -3, ItemsAndBlocks.kebT3Core, kebT2Crafting);
+		kebT1Crafting = new AchievementBCA("kebT1Crafting", -2, -3, BlockLoader.kebT1);
+		kebT2Crafting = new AchievementBCA("kebT2Crafting", 0, -3, BlockLoader.kebT2, kebT1Crafting);
+		kebT3Crafting = new AchievementBCA("kebT3Crafting", 2, -3, BlockLoader.kebT3Core, kebT2Crafting);
 
-		goldStickPickup = new AchievementBCA("goldStickPickup", 3, -1, ItemsAndBlocks.goldStick);
-		diamondStickPickup = new AchievementBCA("diamondStickPickup", 3, -3, ItemsAndBlocks.diamondStick, goldStickPickup);
-		enderStickPickup = new AchievementBCA("enderStickPickup", 3, 1, ItemsAndBlocks.enderStick, goldStickPickup);
+		goldStickPickup = new AchievementBCA("goldStickPickup", 3, -1, ItemLoader.goldStick);
+		diamondStickPickup = new AchievementBCA("diamondStickPickup", 3, -3, ItemLoader.diamondStick, goldStickPickup);
+		enderStickPickup = new AchievementBCA("enderStickPickup", 3, 1, ItemLoader.enderStick, goldStickPickup);
 
-		emeraldStickTrading = new AchievementBCA("emeraldStickTrading", -4, 2, ItemsAndBlocks.emeraldStick).setSpecial();
-		netherStarStickPickup = new AchievementBCA("netherStarStickPickup", -2, 2, ItemsAndBlocks.netherStarStick, emeraldStickTrading).setSpecial();
+		emeraldStickTrading = new AchievementBCA("emeraldStickTrading", -4, 2, ItemLoader.emeraldStick).setSpecial();
+		netherStarStickPickup = new AchievementBCA("netherStarStickPickup", -2, 2, ItemLoader.netherStarStick, emeraldStickTrading).setSpecial();
 
-		ironStickPickup = new AchievementBCA("ironStickPickup", 4, 2, ItemsAndBlocks.ironStick);
-		quartzStickPickup = new AchievementBCA("quartzStickPickup", 4, 0, ItemsAndBlocks.quartzStick, ironStickPickup);
-		redstoneStickPickup = new AchievementBCA("redstoneStickPickup", 6, 2, ItemsAndBlocks.redstoneStick, ironStickPickup);
-		glowstoneStickPickup = new AchievementBCA("glowstoneStickPickup", 2, 2, ItemsAndBlocks.glowstoneStick, ironStickPickup);
-		slimeStickPickup = new AchievementBCA("slimeStickPickup", 4, 4, ItemsAndBlocks.slimeStick, ironStickPickup);
-		blazeStickPickup = new AchievementBCA("blazeStickPickup", 0, 2, ItemsAndBlocks.blazeStick, quartzStickPickup);
+		ironStickPickup = new AchievementBCA("ironStickPickup", 4, 2, ItemLoader.ironStick);
+		quartzStickPickup = new AchievementBCA("quartzStickPickup", 4, 0, ItemLoader.quartzStick, ironStickPickup);
+		redstoneStickPickup = new AchievementBCA("redstoneStickPickup", 6, 2, ItemLoader.redstoneStick, ironStickPickup);
+		glowstoneStickPickup = new AchievementBCA("glowstoneStickPickup", 2, 2, ItemLoader.glowstoneStick, ironStickPickup);
+		slimeStickPickup = new AchievementBCA("slimeStickPickup", 4, 4, ItemLoader.slimeStick, ironStickPickup);
+		blazeStickPickup = new AchievementBCA("blazeStickPickup", 0, 2, ItemLoader.blazeStick, quartzStickPickup);
 
-		fluidicCompressorCrafting = new AchievementBCA("fluidicCompressorCrafting", -3, -2, ItemsAndBlocks.fluidicCompressorBlock);
+		fluidicCompressorCrafting = new AchievementBCA("fluidicCompressorCrafting", -3, -2, BlockLoader.fluidicCompressorBlock);
 
-		chargingStationCrafting = new AchievementBCA("chargingStationCrafting", -3, -1, ItemsAndBlocks.chargingStationBlock);
+		chargingStationCrafting = new AchievementBCA("chargingStationCrafting", -3, -1, BlockLoader.chargingStationBlock);
 
-		itemSorterCrafting = new AchievementBCA("itemSorterCrafting", -4, 3, ItemsAndBlocks.itemSorter);
+		itemSorterCrafting = new AchievementBCA("itemSorterCrafting", -4, 3, BlockLoader.itemSorter);
 
-		backpackStandCrafting = new AchievementBCA("backpackStandCrafting", -3, 3, ItemsAndBlocks.backpackStand);
+		backpackStandCrafting = new AchievementBCA("backpackStandCrafting", -3, 3, BlockLoader.backpackStand);
 
-		machineConfiguratorCrafting = new AchievementBCA("machineConfiguratorCrafting", -2, 3, ItemsAndBlocks.machineConfigurator);
+		machineConfiguratorCrafting = new AchievementBCA("machineConfiguratorCrafting", -2, 3, ItemLoader.machineConfigurator);
 
 		IDust dust = BCAItemManager.dusts.getDust("Diamond");
 		dustPickup = new AchievementBCA("dustPickup", -1, 3, dust != null ? dust.getDustStack() : null);
 
-		kineticMultiToolPickup = new AchievementBCA("kineticMultiToolPickup", 0, 3, ItemsAndBlocks.itemKineticMultiTool);
+		kineticMultiToolPickup = new AchievementBCA("kineticMultiToolPickup", 0, 3, ItemLoader.kineticMultiTool);
 
-		pipeColoringToolCrafting = new AchievementBCA("pipeColoringToolCrafting", 1, 3, ItemsAndBlocks.pipeColoringTool);
+		pipeColoringToolCrafting = new AchievementBCA("pipeColoringToolCrafting", 1, 3, ItemLoader.pipeColoringTool);
 
-		portableLaserPickup = new AchievementBCA("portableLaserPickup", 2, 3, ItemsAndBlocks.portableLaser);
+		portableLaserPickup = new AchievementBCA("portableLaserPickup", 2, 3, ItemLoader.portableLaser);
 
 		BCAAchievementEventHandler eventHandler = new BCAAchievementEventHandler();
 		FMLCommonHandler.instance().bus().register(eventHandler);

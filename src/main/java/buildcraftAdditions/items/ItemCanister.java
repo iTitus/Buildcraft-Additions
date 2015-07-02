@@ -33,7 +33,7 @@ import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.core.achievement.AchievementBCA;
 import buildcraftAdditions.core.achievement.BCAAchievements;
 import buildcraftAdditions.core.achievement.ICraftingAchievement;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.reference.ItemLoader;
 import buildcraftAdditions.utils.RenderUtils;
 import buildcraftAdditions.utils.Utils;
 
@@ -98,11 +98,11 @@ public class ItemCanister extends ItemFluidContainer implements ICraftingAchieve
 
 	@Override
 	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
-		if (crafting.getItem() == ItemsAndBlocks.ironCanister)
+		if (crafting.getItem() == ItemLoader.ironCanister)
 			return BCAAchievements.ironCanisterCrafting;
-		else if (crafting.getItem() == ItemsAndBlocks.goldCanister)
+		else if (crafting.getItem() == ItemLoader.goldCanister)
 			return BCAAchievements.goldCanisterCrafting;
-		else if (crafting.getItem() == ItemsAndBlocks.diamondCanister)
+		else if (crafting.getItem() == ItemLoader.diamondCanister)
 			return BCAAchievements.diamondCanisterCrafting;
 		return null;
 	}
@@ -111,11 +111,11 @@ public class ItemCanister extends ItemFluidContainer implements ICraftingAchieve
 	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
 		if (stack == null || stack.getItem() == null)
 			return;
-		if (stack.getItem() == ItemsAndBlocks.ironCanister)
+		if (stack.getItem() == ItemLoader.ironCanister)
 			BCAAchievements.ironCanisterCrafting.trigger(player);
-		else if (stack.getItem() == ItemsAndBlocks.goldCanister)
+		else if (stack.getItem() == ItemLoader.goldCanister)
 			BCAAchievements.goldCanisterCrafting.trigger(player);
-		else if (stack.getItem() == ItemsAndBlocks.diamondCanister)
+		else if (stack.getItem() == ItemLoader.diamondCanister)
 			BCAAchievements.diamondCanisterCrafting.trigger(player);
 	}
 }

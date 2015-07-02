@@ -27,6 +27,7 @@ import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.config.ConfigurationHandler;
 import buildcraftAdditions.core.achievement.AchievementBCA;
 import buildcraftAdditions.core.achievement.BCAAchievements;
+import buildcraftAdditions.core.achievement.ICraftingAchievement;
 import buildcraftAdditions.items.ItemPoweredBase;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.utils.Utils;
@@ -38,7 +39,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemPipeColoringTool extends ItemPoweredBase {
+public class ItemPipeColoringTool extends ItemPoweredBase implements ICraftingAchievement {
 
 	public static final String[] names = new String[]{"white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"};
 

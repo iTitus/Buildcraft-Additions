@@ -1,10 +1,11 @@
 package buildcraftAdditions.config;
 
-import buildcraftAdditions.core.VersionCheck;
-import net.minecraftforge.common.config.Configuration;
-
 import java.io.File;
 import java.util.HashSet;
+
+import net.minecraftforge.common.config.Configuration;
+
+import buildcraftAdditions.core.VersionCheck;
 
 /**
  * Copyright (c) 2014-2015, AEnterprise
@@ -25,6 +26,7 @@ public class ConfigurationHandler {
 			powerloss,
 			eurekaIntegration,
 			dusterParticles,
+			enableAchievements,
 			forceEnableBCRefinery;
 
 	public static int
@@ -216,6 +218,7 @@ public class ConfigurationHandler {
 		eurekaIntegration = configFile.get("Misc", "eurekaIntegration", true).setRequiresMcRestart(true).getBoolean();
 		dusterParticles = configFile.get("Misc", "dusterParticles", true).getBoolean();
 		particleCount = configFile.get("Misc", "particleCount", 100).setMinValue(0).getInt();
+		enableAchievements = !eurekaIntegration | configFile.get("Misc", "enableAchievementsWhenEurekaIntegrationIsEnabled", true).setRequiresMcRestart(true).getBoolean();
 		forceEnableBCRefinery = !enabled("MultiBlockRefining") || configFile.get("Misc", "forceEnableBCRefinery", false).setRequiresMcRestart(true).getBoolean();
 
 		registerFeature("ChargingStation");
