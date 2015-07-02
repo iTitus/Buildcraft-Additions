@@ -3,17 +3,13 @@ package buildcraftAdditions.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import buildcraftAdditions.core.achievement.AchievementBCA;
-import buildcraftAdditions.core.achievement.BCAAchievements;
-import buildcraftAdditions.core.achievement.ICraftingAchievement;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.reference.BlockLoader;
 import buildcraftAdditions.tileEntities.TileBackpackStand;
 import buildcraftAdditions.utils.Raytracing;
 import buildcraftAdditions.utils.Utils;
@@ -25,11 +21,11 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class BlockBackpackStand extends BlockRotationBase implements ICraftingAchievement {
+public class BlockBackpackStand extends BlockRotationBase {
 	public IIcon icon;
 
 	public BlockBackpackStand() {
-		super("backpackStand", "", false);
+		super("backpackStand", "", false, "backpackStand");
 	}
 
 	@Override
@@ -40,7 +36,7 @@ public class BlockBackpackStand extends BlockRotationBase implements ICraftingAc
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
-			if (world.getBlock(x, y + 1, z) != ItemsAndBlocks.backpackStandGhost)
+			if (world.getBlock(x, y + 1, z) != BlockLoader.backpackStandGhost)
 				return true;
 			TileEntity entity = world.getTileEntity(x, y, z);
 			if (entity != null && entity instanceof TileBackpackStand) {
@@ -64,7 +60,7 @@ public class BlockBackpackStand extends BlockRotationBase implements ICraftingAc
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
 		super.onBlockPlacedBy(world, x, y, z, entity, stack);
-		world.setBlock(x, y + 1, z, ItemsAndBlocks.backpackStandGhost);
+		world.setBlock(x, y + 1, z, BlockLoader.backpackStandGhost);
 	}
 
 	@Override
@@ -110,15 +106,10 @@ public class BlockBackpackStand extends BlockRotationBase implements ICraftingAc
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-		if (world.getBlock(x, y + 1, z) != ItemsAndBlocks.backpackStandGhost) {
+		if (world.getBlock(x, y + 1, z) != BlockLoader.backpackStandGhost) {
 			world.setBlockToAir(x, y, z);
 			if (!world.isRemote)
 				dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 		}
-	}
-
-	@Override
-	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
-		return BCAAchievements.backpackStandCrafting;
 	}
 }

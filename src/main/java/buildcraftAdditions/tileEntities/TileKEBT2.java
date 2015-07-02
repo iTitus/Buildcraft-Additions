@@ -21,13 +21,14 @@ import buildcraftAdditions.api.configurableOutput.EnumPriority;
 import buildcraftAdditions.blocks.multiBlocks.MultiBlockBase;
 import buildcraftAdditions.config.ConfigurationHandler;
 import buildcraftAdditions.multiBlocks.IMultiBlockTile;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.reference.BlockLoader;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.Bases.TileKineticEnergyBufferBase;
 import buildcraftAdditions.tileEntities.varHelpers.MultiBlockData;
 import buildcraftAdditions.utils.Location;
 
 import eureka.api.EurekaAPI;
+
 
 /**
  * Copyright (c) 2014-2015, AEnterprise
@@ -262,7 +263,7 @@ public class TileKEBT2 extends TileKineticEnergyBufferBase implements IMultiBloc
 		configuration.invalidate();
 		energyState = 0;
 		worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
-		worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, ItemsAndBlocks.kebT2, 80);
+		worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, BlockLoader.kebT2, 80);
 		sync();
 	}
 

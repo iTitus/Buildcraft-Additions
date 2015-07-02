@@ -2,20 +2,15 @@ package buildcraftAdditions.items;
 
 import java.util.List;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import buildcraftAdditions.core.achievement.AchievementBCA;
-import buildcraftAdditions.core.achievement.BCAAchievements;
-import buildcraftAdditions.core.achievement.IPickupAchievement;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.items.bases.ItemBase;
 import buildcraftAdditions.utils.Utils;
 
 /**
@@ -25,7 +20,7 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemStickBCA extends ItemBase implements IPickupAchievement {
+public class ItemStickBCA extends ItemBase {
 
 	public ItemStickBCA(String name) {
 		super("stick" + name);
@@ -40,36 +35,5 @@ public class ItemStickBCA extends ItemBase implements IPickupAchievement {
 			list.add(Utils.localizeAllFormatted("tooltip.stick.0", "tooltip." + getName() + ".chipset"));
 			list.add(Utils.localizeAllFormatted("tooltip.stick.1", "tooltip." + getName() + ".stick"));
 		}
-	}
-
-	@Override
-	public AchievementBCA getAchievement(EntityPlayer player, EntityItem pickedUp) {
-		if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.ironStick)
-			return BCAAchievements.ironStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.goldStick)
-			return BCAAchievements.goldStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.diamondStick)
-			return BCAAchievements.diamondStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.netherStarStick)
-			return BCAAchievements.netherStarStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.quartzStick)
-			return BCAAchievements.quartzStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.enderStick)
-			return BCAAchievements.enderStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.redstoneStick)
-			return BCAAchievements.redstoneStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.glowstoneStick)
-			return BCAAchievements.glowstoneStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.slimeStick)
-			return BCAAchievements.slimeStickPickup;
-		else if (pickedUp.getEntityItem().getItem() == ItemsAndBlocks.blazeStick)
-			return BCAAchievements.blazeStickPickup;
-		return null;
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
-		if (stack != null && stack.getItem() == ItemsAndBlocks.emeraldStick)
-			BCAAchievements.emeraldStickTrading.trigger(player);
 	}
 }

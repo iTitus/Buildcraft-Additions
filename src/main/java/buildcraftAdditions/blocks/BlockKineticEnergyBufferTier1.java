@@ -2,11 +2,11 @@ package buildcraftAdditions.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -24,9 +24,7 @@ import buildcraftAdditions.BuildcraftAdditions;
 import buildcraftAdditions.api.configurableOutput.EnumPriority;
 import buildcraftAdditions.api.configurableOutput.EnumSideStatus;
 import buildcraftAdditions.api.configurableOutput.SideConfiguration;
-import buildcraftAdditions.core.achievement.AchievementBCA;
-import buildcraftAdditions.core.achievement.BCAAchievements;
-import buildcraftAdditions.core.achievement.ICraftingAchievement;
+import buildcraftAdditions.items.itemBlocks.ItemBlockKEB;
 import buildcraftAdditions.reference.Variables;
 import buildcraftAdditions.tileEntities.Bases.TileKineticEnergyBufferBase;
 import buildcraftAdditions.tileEntities.TileKineticEnergyBufferTier1;
@@ -40,13 +38,13 @@ import buildcraftAdditions.utils.RenderUtils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class BlockKineticEnergyBufferTier1 extends BlockBase implements ICraftingAchievement {
+public class BlockKineticEnergyBufferTier1 extends BlockBase {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon icons[];
 
 	public BlockKineticEnergyBufferTier1() {
-		super("blockKEBT1");
+		super(Material.iron, "blockKEBT1", "blockKEBT1", "KEBT1", BuildcraftAdditions.bcadditions, ItemBlockKEB.class);
 	}
 
 	@Override
@@ -142,10 +140,5 @@ public class BlockKineticEnergyBufferTier1 extends BlockBase implements ICraftin
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return world.getBlockMetadata(x, y, z) == 9 ? createCreativeKEB() : super.getPickBlock(target, world, x, y, z, player);
-	}
-
-	@Override
-	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
-		return BCAAchievements.kebT1Crafting;
 	}
 }

@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -48,6 +49,7 @@ public class ItemCanister extends ItemFluidContainer implements ICraftingAchieve
 		setUnlocalizedName(name);
 		setCapacity(canisterCapacity);
 		setTextureName("bcadditions:" + name);
+		GameRegistry.registerItem(this, name);
 	}
 
 	@Override

@@ -4,11 +4,9 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,10 +15,7 @@ import net.minecraftforge.common.util.Constants;
 
 import cofh.api.energy.IEnergyContainerItem;
 
-import buildcraftAdditions.core.achievement.AchievementBCA;
-import buildcraftAdditions.core.achievement.BCAAchievements;
-import buildcraftAdditions.core.achievement.ICraftingAchievement;
-import buildcraftAdditions.reference.ItemsAndBlocks;
+import buildcraftAdditions.items.bases.ItemBase;
 import buildcraftAdditions.utils.Utils;
 
 /**
@@ -30,28 +25,28 @@ import buildcraftAdditions.utils.Utils;
  * Please check the contents of the license located in
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
-public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem, ICraftingAchievement {
+public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem {
 
 	protected int capacity;
 	protected int maxReceive;
 	protected int maxExtract;
 
-	public ItemPoweredBase(String name) {
-		super(name);
+	public ItemPoweredBase(String name, String gameRegistryName) {
+		super(name, name, gameRegistryName);
 		setHasSubtypes(true);
 		setMaxStackSize(1);
 	}
 
-	public ItemPoweredBase(String name, int capacity) {
-		this(name, capacity, capacity, capacity);
+	public ItemPoweredBase(String name, String gameregistryName, int capacity) {
+		this(name, gameregistryName, capacity, capacity, capacity);
 	}
 
 	public ItemPoweredBase(String name, int capacity, int maxTransfer) {
-		this(name, capacity, maxTransfer, maxTransfer);
+		this(name, name, capacity, maxTransfer, maxTransfer);
 	}
 
-	public ItemPoweredBase(String name, int capacity, int maxReceive, int maxExtract) {
-		this(name);
+	public ItemPoweredBase(String name, String gameRegistryName, int capacity, int maxReceive, int maxExtract) {
+		this(name, gameRegistryName);
 		this.capacity = capacity;
 		this.maxReceive = maxReceive;
 		this.maxExtract = maxExtract;
@@ -132,26 +127,4 @@ public class ItemPoweredBase extends ItemBase implements IEnergyContainerItem, I
 		return capacity;
 	}
 
-	@Override
-	public AchievementBCA getAchievement(EntityPlayer player, ItemStack crafting, IInventory craftMatrix) {
-		if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier1)
-			return BCAAchievements.powerCapsuleTier1Crafting;
-		else if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier2)
-			return BCAAchievements.powerCapsuleTier2Crafting;
-		else if (crafting.getItem() == ItemsAndBlocks.powerCapsuleTier3)
-			return BCAAchievements.powerCapsuleTier3Crafting;
-		return null;
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
-		if (stack == null || stack.getItem() == null)
-			return;
-		if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier1)
-			BCAAchievements.powerCapsuleTier1Crafting.trigger(player);
-		else if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier2)
-			BCAAchievements.powerCapsuleTier2Crafting.trigger(player);
-		else if (stack.getItem() == ItemsAndBlocks.powerCapsuleTier3)
-			BCAAchievements.powerCapsuleTier3Crafting.trigger(player);
-	}
 }

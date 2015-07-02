@@ -26,7 +26,7 @@ import buildcraftAdditions.utils.PlayerUtils;
 public class MultiBlockKEBT3Plating extends MultiBlockBase implements ICraftingAchievement {
 
 	public MultiBlockKEBT3Plating() {
-		super("blockKEBT3Plating", Variables.Identifiers.KEBT3_PLATING, new MultiBlockPaternKEBT3(), "KEB/T3/plating");
+		super("blockKEBT3Plating", Variables.Identifiers.KEBT3_PLATING, new MultiBlockPaternKEBT3(), "KEB/T3/plating", "KEBT3Plating");
 	}
 
 	@Override
